@@ -2,8 +2,6 @@ import React from 'react'
 
 import { Home } from 'pages/home'
 
-function App() {
-  return <Home />
-}
+const App = <Home />
 
 export { App }

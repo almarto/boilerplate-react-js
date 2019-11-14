@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Counter } from 'app/counter/components'
+import { Counter } from 'app/counter/components/counter'
 
 import logo from './assets/logo.svg'
 import './styles/Home.scss'
