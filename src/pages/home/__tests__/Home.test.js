@@ -1,7 +1,10 @@
 import React from 'react'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import { render, waitForElement, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
+import { rootReducer } from 'reducers'
 import { Home } from 'pages/home'
 
 function incrementClick(container) {
@@ -16,9 +19,18 @@ function decrementClick(container) {
   fireEvent.click(decrementButton)
 }
 
+function mount(Component, props, initialState = {}) {
+  const store = createStore(rootReducer, initialState)
+  return render(
+    <Provider store={store}>
+      <Component {...props} />
+    </Provider>,
+  )
+}
+
 describe('Home', () => {
   it('renders correctly', async () => {
-    const { getByRole, getByText } = render(<Home />)
+    const { getByRole, getByText } = mount(Home)
 
     await waitForElement(() => getByRole('heading'))
     await waitForElement(() => getByText('Counter: 0'))
@@ -30,13 +42,13 @@ describe('Home', () => {
 
   describe('counter section', () => {
     it('starts with counter 0', async () => {
-      const { getByText } = render(<Home />)
+      const { getByText } = mount(Home)
 
       await waitForElement(() => getByText('Counter: 0'))
     })
 
     it('can increment counter', async () => {
-      const homePage = render(<Home />)
+      const homePage = mount(Home)
 
       incrementClick(homePage)
 
@@ -44,7 +56,7 @@ describe('Home', () => {
     })
 
     it('can decrement counter', async () => {
-      const homePage = render(<Home />)
+      const homePage = mount(Home)
 
       incrementClick(homePage)
       decrementClick(homePage)
@@ -53,7 +65,7 @@ describe('Home', () => {
     })
 
     it('can not decrement counter if value is 0', async () => {
-      const homePage = render(<Home />)
+      const homePage = mount(Home)
 
       decrementClick(homePage)
 

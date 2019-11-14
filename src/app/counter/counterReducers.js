@@ -12,7 +12,9 @@ const counter = createReducer(INITIAL_STATE, {
 })
 
 function decrementCounter(storeCounter, quantity) {
-  return storeCounter + quantity
+  if (!storeCounter) return INITIAL_STATE
+
+  return storeCounter - quantity
 }
 
 export { counter }
