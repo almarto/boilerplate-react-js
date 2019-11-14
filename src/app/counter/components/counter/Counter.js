@@ -1,14 +1,25 @@
-import React from 'react'
-import { number } from 'prop-types'
+import React, { useState } from 'react'
 
-const Counter = ({ counter }) => <div>Counter: {counter}</div>
+const Counter = () => {
+  const [counter, setCounter] = useState(0)
 
-Counter.propTypes = {
-  counter: number,
-}
+  const increment = () => setCounter(counter + 1)
+  const decrement = () => {
+    if (!counter) return
+    setCounter(counter - 1)
+  }
 
-Counter.defaultProps = {
-  counter: 0,
+  return (
+    <div className="counter">
+      <div className="counter-content">Counter: {counter}</div>
+      <button className="counter-increment" onClick={increment}>
+        Increment
+      </button>
+      <button className="counter-decrement" onClick={decrement}>
+        Decrement
+      </button>
+    </div>
+  )
 }
 
 export { Counter }
