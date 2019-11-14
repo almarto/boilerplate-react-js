@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import { Counter } from 'app/counter/components'
+
 import logo from './assets/logo.svg'
 import './styles/Home.scss'
 
@@ -20,6 +22,7 @@ const Home = () => {
         value="Disable button"
         disabled={buttonDisabled}
       />
+      <Counter />
     </div>
   )
 }

@@ -6,10 +6,11 @@ import { Home } from '../Home'
 
 describe('Home', () => {
   it('renders correctly', async () => {
-    const { getByRole } = render(<Home />)
+    const { getByRole, getByText } = render(<Home />)
 
     await waitForElement(() => getByRole('heading'))
     await waitForElement(() => getByRole('button'))
+    await waitForElement(() => getByText('Counter: 0'))
 
     const button = getByRole('button')
 
