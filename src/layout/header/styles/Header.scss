@@ -8,6 +8,12 @@
   color: white;
 }
 
-.header-logo {
+.header__logo {
   height: 40vmin;
+}
+
+.header__menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
